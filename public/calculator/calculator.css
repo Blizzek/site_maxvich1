@@ -1,0 +1,343 @@
+/**
+ * Стили для калькулятора стоимости ремонта (адаптировано под фирменную палитру)
+ */
+
+:root {
+  --calc-primary: #ff8c00;
+  --calc-primary-dark: #e57d00;
+  --calc-accent: #2f6fe3;
+  --calc-surface: #ffffff;
+  --calc-surface-muted: #f5f7fb;
+  --calc-text: #0f172a;
+  --calc-text-subtle: #4b5563;
+  --calc-border: #e2e8f0;
+  --calc-shadow: 0 10px 30px rgba(16, 24, 40, 0.12);
+}
+
+.repair-calculator {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--calc-surface);
+  border-radius: 16px;
+  box-shadow: var(--calc-shadow);
+  overflow: hidden;
+  border: 1px solid var(--calc-border);
+}
+
+.calculator-header {
+  background: linear-gradient(135deg, var(--calc-primary) 0%, var(--calc-accent) 100%);
+  color: white;
+  padding: 36px 28px;
+  text-align: center;
+}
+
+.calculator-title {
+  margin: 0 0 8px 0;
+  font-size: 1.9em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.calculator-subtitle {
+  margin: 0;
+  font-size: 1.05em;
+  opacity: 0.94;
+}
+
+.calculator-form {
+  padding: 32px 28px 28px;
+  background: var(--calc-surface);
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--calc-text);
+  font-size: 1em;
+}
+
+.required {
+  color: #ef4444;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1em;
+  border: 2px solid var(--calc-border);
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  background: var(--calc-surface);
+  color: var(--calc-text);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--calc-primary);
+  box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.15);
+}
+
+.form-input:hover {
+  border-color: #cbd5e1;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.radio-label,
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--calc-surface-muted);
+  border: 2px solid var(--calc-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.98em;
+  user-select: none;
+  color: var(--calc-text);
+}
+
+.radio-label:hover,
+.checkbox-label:hover {
+  background: #eef2ff;
+  border-color: var(--calc-accent);
+}
+
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.radio-label input[type="radio"]:checked,
+.checkbox-label input[type="checkbox"]:checked {
+  accent-color: var(--calc-primary);
+}
+
+.radio-label:has(input:checked) {
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.12) 0%, rgba(47, 111, 227, 0.12) 100%);
+  color: var(--calc-text);
+  border-color: var(--calc-primary);
+}
+
+.checkbox-label:has(input:checked) {
+  background: rgba(255, 140, 0, 0.08);
+  border-color: var(--calc-primary);
+  color: var(--calc-text);
+}
+
+.calculate-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.05em;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--calc-primary) 0%, var(--calc-primary-dark) 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 4px;
+  box-shadow: 0 12px 30px rgba(255, 140, 0, 0.25);
+}
+
+.calculate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(255, 140, 0, 0.3);
+}
+
+.calculate-btn:active {
+  transform: translateY(0);
+}
+
+.calculator-result {
+  margin-top: 28px;
+  padding: 26px;
+  background: var(--calc-surface-muted);
+  border-top: 3px solid var(--calc-primary);
+  animation: slideDown 0.35s ease-out;
+  border-radius: 14px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-header {
+  margin-bottom: 16px;
+}
+
+.result-title {
+  margin: 0;
+  color: var(--calc-text);
+  font-size: 1.4em;
+  font-weight: 800;
+}
+
+.result-breakdown {
+  background: var(--calc-surface);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  border: 1px solid var(--calc-border);
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--calc-border);
+  gap: 12px;
+}
+
+.breakdown-item:last-child {
+  border-bottom: none;
+}
+
+.breakdown-label {
+  color: var(--calc-text-subtle);
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+
+.breakdown-value {
+  font-weight: 700;
+  color: var(--calc-text);
+  font-size: 1em;
+}
+
+.result-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  background: var(--calc-surface);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--calc-border);
+}
+
+.result-total-label {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--calc-text);
+}
+
+.result-total-value {
+  font-size: 1.9em;
+  font-weight: 800;
+  color: var(--calc-primary);
+}
+
+.result-note {
+  font-size: 0.9em;
+  color: var(--calc-text-subtle);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .repair-calculator {
+    border-radius: 12px;
+  }
+
+  .calculator-header {
+    padding: 26px 18px;
+  }
+
+  .calculator-title {
+    font-size: 1.6em;
+  }
+
+  .calculator-subtitle {
+    font-size: 1em;
+  }
+
+  .calculator-form {
+    padding: 24px 18px;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    flex-direction: column;
+  }
+
+  .radio-label,
+  .checkbox-label {
+    width: 100%;
+  }
+
+  .result-total {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .result-total-value {
+    font-size: 1.6em;
+  }
+}
+
+/* Темная тема (опционально) */
+body.dark-theme .repair-calculator {
+  background: #0f172a;
+  border-color: #1f2937;
+}
+
+body.dark-theme .calculator-form {
+  background: #0f172a;
+}
+
+body.dark-theme .form-label,
+body.dark-theme .breakdown-value,
+body.dark-theme .result-total-label {
+  color: #e5e7eb;
+}
+
+body.dark-theme .form-input {
+  background: #111827;
+  color: #e5e7eb;
+  border-color: #1f2937;
+}
+
+body.dark-theme .radio-label,
+body.dark-theme .checkbox-label {
+  background: #111827;
+  border-color: #1f2937;
+  color: #e5e7eb;
+}
+
+body.dark-theme .calculator-result,
+body.dark-theme .result-breakdown,
+body.dark-theme .result-total {
+  background: #0b1220;
+  border-color: #1f2937;
+}
+
+body.dark-theme .breakdown-label,
+body.dark-theme .result-note {
+  color: #9ca3af;
+}
