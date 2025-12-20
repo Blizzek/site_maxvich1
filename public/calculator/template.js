@@ -160,6 +160,6 @@ function getCalculatorHTML() {
 }
 
 // Экспорт для использования в других модулях
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { getCalculatorHTML };
 }

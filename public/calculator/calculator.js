@@ -18,7 +18,7 @@ class RepairCalculator {
    */
   init() {
     this.container = document.getElementById(this.containerId);
-    
+
     if (!this.container) {
       console.error(`Контейнер с ID "${this.containerId}" не найден`);
       return;
@@ -28,13 +28,13 @@ class RepairCalculator {
     this.container.innerHTML = getCalculatorHTML();
 
     // Находим элементы
-    this.form = document.getElementById('calculatorForm');
-    this.resultBlock = document.getElementById('calculatorResult');
+    this.form = document.getElementById("calculatorForm");
+    this.resultBlock = document.getElementById("calculatorResult");
 
     // Добавляем обработчики
     this.attachEventListeners();
 
-    console.log('Калькулятор ремонта инициализирован');
+    console.log("Калькулятор ремонта инициализирован");
   }
 
   /**
@@ -42,21 +42,21 @@ class RepairCalculator {
    */
   attachEventListeners() {
     if (this.form) {
-      this.form.addEventListener('submit', (e) => {
+      this.form.addEventListener("submit", (e) => {
         e.preventDefault();
         this.shouldScrollToResult = true;
         this.calculatePrice();
       });
 
       // Автоматический пересчет при изменении любого поля
-      this.form.addEventListener('change', () => {
-        if (this.resultBlock.style.display !== 'none') {
+      this.form.addEventListener("change", () => {
+        if (this.resultBlock.style.display !== "none") {
           this.calculatePrice();
         }
       });
 
-      this.form.addEventListener('input', (e) => {
-        if (e.target.type === 'number' && this.resultBlock.style.display !== 'none') {
+      this.form.addEventListener("input", (e) => {
+        if (e.target.type === "number" && this.resultBlock.style.display !== "none") {
           this.calculatePrice();
         }
       });
@@ -68,19 +68,19 @@ class RepairCalculator {
    */
   getFormData() {
     const formData = new FormData(this.form);
-    
+
     return {
-      area: parseFloat(formData.get('area')) || 0,
-      objectType: formData.get('objectType'),
-      buildingType: formData.get('buildingType'),
-      bathrooms: parseInt(formData.get('bathrooms')) || 0,
-      finishType: formData.get('finishType'),
-      electrical: formData.get('electrical') === 'on',
-      heating: formData.get('heating') === 'on',
-      plumbing: formData.get('plumbing') === 'on',
-      replanning: formData.get('replanning') === 'on',
-      ceiling: formData.get('ceiling') === 'on',
-      designProject: formData.get('designProject') === 'on'
+      area: parseFloat(formData.get("area")) || 0,
+      objectType: formData.get("objectType"),
+      buildingType: formData.get("buildingType"),
+      bathrooms: parseInt(formData.get("bathrooms")) || 0,
+      finishType: formData.get("finishType"),
+      electrical: formData.get("electrical") === "on",
+      heating: formData.get("heating") === "on",
+      plumbing: formData.get("plumbing") === "on",
+      replanning: formData.get("replanning") === "on",
+      ceiling: formData.get("ceiling") === "on",
+      designProject: formData.get("designProject") === "on",
     };
   }
 
@@ -89,9 +89,9 @@ class RepairCalculator {
    */
   calculatePrice() {
     const data = this.getFormData();
-    
+
     if (data.area <= 0) {
-      alert('Пожалуйста, укажите площадь помещения');
+      alert("Пожалуйста, укажите площадь помещения");
       return;
     }
 
@@ -103,7 +103,7 @@ class RepairCalculator {
     const baseCost = data.area * basePrice;
     breakdown.push({
       label: `Базовая стоимость (${data.finishType}, ${data.area} м²)`,
-      value: baseCost
+      value: baseCost,
     });
     totalPrice += baseCost;
 
@@ -113,7 +113,7 @@ class RepairCalculator {
       const objectExtra = baseCost * (objectCoeff - 1);
       breakdown.push({
         label: `Надбавка за тип объекта (${data.objectType})`,
-        value: objectExtra
+        value: objectExtra,
       });
       totalPrice += objectExtra;
     }
@@ -124,7 +124,7 @@ class RepairCalculator {
       const buildingExtra = baseCost * objectCoeff * (buildingCoeff - 1);
       breakdown.push({
         label: `Надбавка за тип здания (${data.buildingType})`,
-        value: buildingExtra
+        value: buildingExtra,
       });
       totalPrice += buildingExtra;
     }
@@ -134,36 +134,36 @@ class RepairCalculator {
       const bathroomCost = data.bathrooms * this.config.bathroomPrice;
       breakdown.push({
         label: `Санузлы (${data.bathrooms} шт.)`,
-        value: bathroomCost
+        value: bathroomCost,
       });
       totalPrice += bathroomCost;
     }
 
     // 5. Дополнительные услуги
     const services = [
-      { key: 'electrical', name: 'электрика', enabled: data.electrical },
-      { key: 'heating', name: 'теплыйПол', enabled: data.heating },
-      { key: 'plumbing', name: 'сантехника', enabled: data.plumbing },
-      { key: 'replanning', name: 'перепланировка', enabled: data.replanning },
-      { key: 'ceiling', name: 'натяжнойПотолок', enabled: data.ceiling },
-      { key: 'designProject', name: 'дизайнПроект', enabled: data.designProject }
+      { key: "electrical", name: "электрика", enabled: data.electrical },
+      { key: "heating", name: "теплыйПол", enabled: data.heating },
+      { key: "plumbing", name: "сантехника", enabled: data.plumbing },
+      { key: "replanning", name: "перепланировка", enabled: data.replanning },
+      { key: "ceiling", name: "натяжнойПотолок", enabled: data.ceiling },
+      { key: "designProject", name: "дизайнПроект", enabled: data.designProject },
     ];
 
-    services.forEach(service => {
+    services.forEach((service) => {
       if (service.enabled) {
         const serviceConfig = this.config.additionalServices[service.name];
         let serviceCost = 0;
 
-        if (serviceConfig.type === 'perSquareMeter') {
+        if (serviceConfig.type === "perSquareMeter") {
           serviceCost = data.area * serviceConfig.price;
-        } else if (serviceConfig.type === 'fixed') {
+        } else if (serviceConfig.type === "fixed") {
           serviceCost = serviceConfig.price;
         }
 
         if (serviceCost > 0) {
           breakdown.push({
             label: this.getServiceLabel(service.name, serviceConfig.type, data.area),
-            value: serviceCost
+            value: serviceCost,
           });
           totalPrice += serviceCost;
         }
@@ -179,20 +179,20 @@ class RepairCalculator {
    */
   getServiceLabel(serviceName, type, area) {
     const labels = {
-      'электрика': 'Электрика',
-      'теплыйПол': 'Теплый пол',
-      'сантехника': 'Сантехника',
-      'перепланировка': 'Перепланировка',
-      'натяжнойПотолок': 'Натяжной потолок',
-      'дизайнПроект': 'Дизайн-проект'
+      электрика: "Электрика",
+      теплыйПол: "Теплый пол",
+      сантехника: "Сантехника",
+      перепланировка: "Перепланировка",
+      натяжнойПотолок: "Натяжной потолок",
+      дизайнПроект: "Дизайн-проект",
     };
 
     const label = labels[serviceName] || serviceName;
-    
-    if (type === 'perSquareMeter') {
+
+    if (type === "perSquareMeter") {
       return `${label} (${area} м²)`;
     }
-    
+
     return label;
   }
 
@@ -200,26 +200,32 @@ class RepairCalculator {
    * Форматирование числа в валюту
    */
   formatCurrency(value) {
-    return new Intl.NumberFormat('ru-RU', {
-      style: 'decimal',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(Math.round(value)) + ' ' + this.config.currency;
+    return (
+      new Intl.NumberFormat("ru-RU", {
+        style: "decimal",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(value)) + " " + this.config.currency
+    );
   }
 
   /**
    * Отображение результата
    */
   displayResult(breakdown, totalPrice) {
-    const breakdownHTML = breakdown.map(item => `
+    const breakdownHTML = breakdown
+      .map(
+        (item) => `
       <div class="breakdown-item">
         <span class="breakdown-label">${item.label}</span>
         <span class="breakdown-value">${this.formatCurrency(item.value)}</span>
       </div>
-    `).join('');
+    `
+      )
+      .join("");
 
-    const breakdownContainer = document.getElementById('resultBreakdown');
-    const totalPriceElement = document.getElementById('totalPrice');
+    const breakdownContainer = document.getElementById("resultBreakdown");
+    const totalPriceElement = document.getElementById("totalPrice");
 
     if (breakdownContainer) {
       breakdownContainer.innerHTML = breakdownHTML;
@@ -231,12 +237,12 @@ class RepairCalculator {
 
     // Показываем блок результата
     if (this.resultBlock) {
-      this.resultBlock.style.display = 'block';
-      
+      this.resultBlock.style.display = "block";
+
       // Прокручиваем к результату только при первом расчете (после нажатия кнопки)
       if (this.shouldScrollToResult) {
         setTimeout(() => {
-          this.resultBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          this.resultBlock.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }, 100);
         this.shouldScrollToResult = false;
       }
@@ -248,10 +254,10 @@ class RepairCalculator {
    */
   updateConfig(newConfig) {
     this.config = { ...this.config, ...newConfig };
-    console.log('Конфигурация обновлена', this.config);
-    
+    console.log("Конфигурация обновлена", this.config);
+
     // Пересчитываем, если уже есть результат
-    if (this.resultBlock && this.resultBlock.style.display !== 'none') {
+    if (this.resultBlock && this.resultBlock.style.display !== "none") {
       this.calculatePrice();
     }
   }
@@ -278,6 +284,6 @@ function initRepairCalculator(containerId, customConfig = null) {
 }
 
 // Экспорт для использования в других модулях
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { RepairCalculator, initRepairCalculator };
 }

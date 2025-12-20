@@ -35,3 +35,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# database
+/data/leads.json
+/data/calculator-config.json
+/data/projects.json
+
+# uploads
+/public/uploads/
