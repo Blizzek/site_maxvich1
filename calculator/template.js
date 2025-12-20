@@ -124,6 +124,14 @@ function getCalculatorHTML() {
               <input type="checkbox" name="replanning" id="replanning" />
               <span>Перепланировка</span>
             </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="ceiling" id="ceiling" />
+              <span>Натяжной потолок</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="designProject" id="designProject" />
+              <span>Дизайн-проект</span>
+            </label>
           </div>
         </div>
 

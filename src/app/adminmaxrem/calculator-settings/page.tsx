@@ -40,6 +40,14 @@ interface CalculatorConfig {
       type: string;
       price: number;
     };
+    натяжнойПотолок: {
+      type: string;
+      price: number;
+    };
+    дизайнПроект: {
+      type: string;
+      price: number;
+    };
   };
   currency: string;
   version: string;
@@ -345,7 +353,7 @@ export default function CalculatorSettingsPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Сантехника (₽/м²)
+                      Сантехника (₽)
                     </label>
                     <Input
                       type="number"
@@ -361,6 +369,26 @@ export default function CalculatorSettingsPage() {
                       type="number"
                       value={config.additionalServices.перепланировка.price}
                       onChange={(e) => updateValue(['additionalServices', 'перепланировка', 'price'], Number(e.target.value))}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Натяжной потолок (₽/м²)
+                    </label>
+                    <Input
+                      type="number"
+                      value={config.additionalServices.натяжнойПотолок.price}
+                      onChange={(e) => updateValue(['additionalServices', 'натяжнойПотолок', 'price'], Number(e.target.value))}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Дизайн-проект (₽)
+                    </label>
+                    <Input
+                      type="number"
+                      value={config.additionalServices.дизайнПроект.price}
+                      onChange={(e) => updateValue(['additionalServices', 'дизайнПроект', 'price'], Number(e.target.value))}
                     />
                   </div>
                 </div>
