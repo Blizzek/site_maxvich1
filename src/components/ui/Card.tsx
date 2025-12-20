@@ -6,6 +6,7 @@ interface CardProps {
   className?: string;
   hover?: boolean;
   variant?: "default" | "premium" | "glass";
+  onClick?: () => void;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -13,6 +14,7 @@ export const Card: React.FC<CardProps> = ({
   className,
   hover = false,
   variant = "default",
+  onClick,
 }) => {
   const baseStyles = "rounded-2xl transition-all duration-500";
   
@@ -28,6 +30,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <div
+      onClick={onClick}
       className={cn(
         baseStyles,
         variantStyles[variant],

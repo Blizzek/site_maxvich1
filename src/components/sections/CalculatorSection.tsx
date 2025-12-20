@@ -7,6 +7,7 @@ const CALC_CONTAINER_ID = "calculator-container";
 declare global {
   interface Window {
     initRepairCalculator?: (containerId: string, customConfig?: unknown) => unknown;
+    CALCULATOR_CONFIG?: unknown;
   }
 }
 
@@ -50,19 +51,40 @@ export function CalculatorSection() {
   const initializedRef = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [config, setConfig] = useState<unknown>(null);
+
+  // Загрузка конфигурации из API
+  useEffect(() => {
+    const loadConfig = async () => {
+      try {
+        const response = await fetch('/api/calculator-config');
+        if (response.ok) {
+          const data = await response.json();
+          setConfig(data);
+          // Устанавливаем глобальную переменную для калькулятора
+          if (typeof window !== 'undefined') {
+            window.CALCULATOR_CONFIG = data;
+          }
+        }
+      } catch (err) {
+        console.error('Error loading calculator config:', err);
+      }
+    };
+
+    loadConfig();
+  }, []);
 
   useEffect(() => {
-    if (initializedRef.current) return;
+    if (initializedRef.current || !config) return;
 
     const init = async () => {
       try {
         ensureStyles();
-        await loadScript("/calculator/config.js");
         await loadScript("/calculator/template.js");
         await loadScript("/calculator/calculator.js");
 
         if (typeof window !== "undefined" && window.initRepairCalculator && containerRef.current) {
-          window.initRepairCalculator(CALC_CONTAINER_ID);
+          window.initRepairCalculator(CALC_CONTAINER_ID, config);
           initializedRef.current = true;
           setReady(true);
         } else {
@@ -75,7 +97,7 @@ export function CalculatorSection() {
     };
 
     init();
-  }, []);
+  }, [config]);
 
   return (
     <section id="calculator" className="section-padding bg-gradient-to-b from-secondary-900 via-secondary-800 to-secondary-900 text-white">
