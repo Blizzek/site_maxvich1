@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Phone, Calculator, Send } from "lucide-react";
@@ -94,37 +95,20 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Правая часть - изображение */}
+          {/* Правая часть - изображение (без обрезки) */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              {/* Заглушка для фото */}
-              <div className="aspect-square bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center backdrop-blur-sm border border-white/10">
-                <div className="text-center text-white">
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                    <svg
-                      className="w-16 h-16"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-lg font-semibold">Фото владельца</p>
-                  <p className="text-sm text-gray-400 mt-2">
-                    Здесь будет ваше фото
-                  </p>
-                </div>
+            <div className="relative rounded-2xl shadow-2xl border border-white/10 bg-white/5">
+              <div className="w-full h-[28rem] md:h-[30rem] lg:h-[32rem] p-3">
+                <Image
+                  src="/images/IfDg_EWMM8dWrGmRcn5gagMj3eKDHYri7jCsjV7UQpFJ9lyttghVtcEyoJkGiBs.jpg"
+                  alt="Владелец компании"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  className="w-full h-full object-contain rounded-xl"
+                  width={1200}
+                  height={1600}
+                />
               </div>
-
-              {/* Декоративные элементы */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500 rounded-full blur-2xl opacity-50"></div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-accent-500 rounded-full blur-2xl opacity-50"></div>
             </div>
 
             {/* Плавающая карточка */}
