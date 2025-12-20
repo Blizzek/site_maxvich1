@@ -37,9 +37,28 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   });
 
   const onSubmit = async (data: FormValues) => {
-    console.log("Форма отправлена", data);
-    setSubmitted(true);
-    reset();
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Ошибка при отправке заявки');
+      }
+
+      setSubmitted(true);
+      reset();
+      
+      // Скрыть сообщение об успехе через 5 секунд
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Произошла ошибка при отправке заявки. Попробуйте еще раз.');
+    }
   };
 
   return (
