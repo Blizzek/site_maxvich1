@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator/calculator.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Добро пожаловать!</h1>
+            <p class="subtitle">Простой интерактивный сайт</p>
+        </header>
+
+        <main>
+            <section class="counter-section">
+                <h2>Счётчик</h2>
+                <div class="counter-display">
+                    <span id="counter">0</span>
+                </div>
+                <div class="button-group">
+                    <button id="decrementBtn" class="btn btn-danger">-</button>
+                    <button id="resetBtn" class="btn btn-secondary">Сброс</button>
+                    <button id="incrementBtn" class="btn btn-success">+</button>
+                </div>
+            </section>
+
+            <section class="todo-section">
+                <h2>Список задач</h2>
+                <div class="todo-input-group">
+                    <input type="text" id="todoInput" placeholder="Введите задачу...">
+                    <button id="addTodoBtn" class="btn btn-primary">Добавить</button>
+                </div>
+                <ul id="todoList" class="todo-list"></ul>
+            </section>
+
+            <section class="theme-section">
+                <h2>Настройки</h2>
+                <button id="themeToggle" class="btn btn-primary">Переключить тему</button>
+                <button id="openCalculatorBtn" class="btn btn-primary" style="margin-top: 15px;">Калькулятор ремонта</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Мой сайт. Сделано с ❤️</p>
+        </footer>
+    </div>
+
+    <!-- Модальное окно калькулятора -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="calculatorContainer"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="calculator/config.js"></script>
+    <script src="calculator/template.js"></script>
+    <script src="calculator/calculator.js"></script>
+</body>
+</html>

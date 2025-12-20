@@ -1,0 +1,319 @@
+/**
+ * Стили для калькулятора стоимости ремонта
+ */
+
+.repair-calculator {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.calculator-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.calculator-title {
+  margin: 0 0 10px 0;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.calculator-subtitle {
+  margin: 0;
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.calculator-form {
+  padding: 40px 30px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1em;
+}
+
+.required {
+  color: #e74c3c;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1em;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input:hover {
+  border-color: #b0b0b0;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.radio-label,
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.95em;
+  user-select: none;
+}
+
+.radio-label:hover,
+.checkbox-label:hover {
+  background: #e9ecef;
+  border-color: #667eea;
+}
+
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.radio-label input[type="radio"]:checked,
+.checkbox-label input[type="checkbox"]:checked {
+  accent-color: #667eea;
+}
+
+.radio-label:has(input:checked) {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.checkbox-label:has(input:checked) {
+  background: #e8ebff;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.calculate-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.calculate-btn:active {
+  transform: translateY(0);
+}
+
+.calculator-result {
+  margin-top: 30px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-top: 3px solid #667eea;
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-header {
+  margin-bottom: 20px;
+}
+
+.result-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.5em;
+}
+
+.result-breakdown {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.breakdown-item:last-child {
+  border-bottom: none;
+}
+
+.breakdown-label {
+  color: #555;
+  font-size: 0.95em;
+}
+
+.breakdown-value {
+  font-weight: 600;
+  color: #333;
+  font-size: 1em;
+}
+
+.result-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.result-total-label {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+}
+
+.result-total-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.result-note {
+  font-size: 0.85em;
+  color: #777;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .repair-calculator {
+    border-radius: 0;
+  }
+
+  .calculator-header {
+    padding: 30px 20px;
+  }
+
+  .calculator-title {
+    font-size: 1.5em;
+  }
+
+  .calculator-subtitle {
+    font-size: 1em;
+  }
+
+  .calculator-form {
+    padding: 30px 20px;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    flex-direction: column;
+  }
+
+  .radio-label,
+  .checkbox-label {
+    width: 100%;
+  }
+
+  .result-total {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .result-total-value {
+    font-size: 1.8em;
+  }
+}
+
+/* Темная тема (опционально) */
+body.dark-theme .repair-calculator {
+  background: #2d2d2d;
+}
+
+body.dark-theme .form-label {
+  color: #e0e0e0;
+}
+
+body.dark-theme .form-input {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border-color: #404040;
+}
+
+body.dark-theme .radio-label,
+body.dark-theme .checkbox-label {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: #e0e0e0;
+}
+
+body.dark-theme .calculator-result {
+  background: #1a1a1a;
+}
+
+body.dark-theme .result-breakdown,
+body.dark-theme .result-total {
+  background: #2d2d2d;
+}
+
+body.dark-theme .result-title,
+body.dark-theme .breakdown-value,
+body.dark-theme .result-total-label {
+  color: #e0e0e0;
+}
+
+body.dark-theme .breakdown-label {
+  color: #b0b0b0;
+}
