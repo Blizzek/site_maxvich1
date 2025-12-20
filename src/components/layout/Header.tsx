@@ -29,8 +29,8 @@ export const Header: React.FC = () => {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        "bg-white/70 backdrop-blur-2xl shadow-sm",
-        isScrolled && "bg-white/90 shadow-md border-b border-gray-100"
+        "bg-secondary-900/50 backdrop-blur-3xl shadow-sm border-b border-white/10",
+        isScrolled && "bg-secondary-900/50 shadow-lg border-b border-white/20"
       )}
     >
       <Container>
@@ -38,8 +38,8 @@ export const Header: React.FC = () => {
           {/* Логотип */}
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="text-2xl font-extrabold">
-              <span className="text-primary-500 transition-all duration-300 group-hover:text-primary-600">Rem</span>
-              <span className="text-secondary-900 font-extrabold transition-all duration-300 group-hover:text-secondary-800">
+              <span className="text-primary-500 transition-all duration-300 group-hover:text-primary-400">Rem</span>
+              <span className="text-white font-extrabold transition-all duration-300 group-hover:text-secondary-100">
                 -Maxvich
               </span>
             </div>
@@ -51,7 +51,7 @@ export const Header: React.FC = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary-600 transition-all duration-300 rounded-lg hover:bg-primary-50 relative group"
+                className="px-4 py-2 text-sm font-semibold text-secondary-100 hover:text-primary-400 transition-all duration-300 rounded-lg hover:bg-white/5 relative group"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 group-hover:w-3/4 transition-all duration-300"></span>
@@ -76,7 +76,7 @@ export const Header: React.FC = () => {
               variant="outline"
               size="sm"
               href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}
-              className="border-gray-300 text-gray-700 hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50"
+              className="border-secondary-600 text-secondary-100 hover:border-primary-500 hover:text-primary-400 hover:bg-white/5"
             >
               <Phone className="w-4 h-4" />
               Позвонить
@@ -98,29 +98,29 @@ export const Header: React.FC = () => {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-secondary-900 transition-colors" />
+              <X className="w-6 h-6 text-white transition-colors" />
             ) : (
-              <Menu className="w-6 h-6 text-secondary-900 transition-colors" />
+              <Menu className="w-6 h-6 text-white transition-colors" />
             )}
           </button>
         </div>
 
         {/* Мобильное меню */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 bg-white/98 backdrop-blur-lg">
+          <div className="lg:hidden py-4 border-t border-secondary-800 bg-secondary-900/95 backdrop-blur-lg">
             <nav className="flex flex-col space-y-4">
               {NAVIGATION_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-secondary-700 hover:text-primary-600 transition-colors px-4 py-2 font-medium"
+                  className="text-secondary-100 hover:text-primary-400 transition-colors px-4 py-2 font-medium"
                   onClick={handleLinkClick}
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-2 px-4 pt-4 border-t border-gray-200">
-                <Button variant="outline" size="sm" className="w-full" href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}>
+              <div className="flex flex-col space-y-2 px-4 pt-4 border-t border-secondary-800">
+                <Button variant="outline" size="sm" className="w-full border-secondary-600 text-secondary-100" href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}>
                   <Phone className="w-4 h-4" />
                   Позвонить
                 </Button>
