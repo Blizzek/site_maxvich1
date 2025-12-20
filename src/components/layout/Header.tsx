@@ -28,41 +28,33 @@ export const Header: React.FC = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-transparent backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "bg-white/70 backdrop-blur-2xl shadow-sm",
+        isScrolled && "bg-white/90 shadow-md border-b border-gray-100"
       )}
     >
       <Container>
         <div className="flex items-center justify-between h-20">
           {/* Логотип */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold">
-              <span className="text-primary-500">Rem</span>
-              <span
-                className={cn(
-                  "transition-colors",
-                  isScrolled ? "text-gray-900" : "text-white"
-                )}
-              >
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="text-2xl font-extrabold">
+              <span className="text-primary-500 transition-all duration-300 group-hover:text-primary-600">Rem</span>
+              <span className="text-secondary-900 font-extrabold transition-all duration-300 group-hover:text-secondary-800">
                 -Maxvich
               </span>
             </div>
           </Link>
 
           {/* Навигация десктоп */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-1">
             {NAVIGATION_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary-500",
-                  isScrolled ? "text-gray-800" : "text-white drop-shadow"
-                )}
+                className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary-600 transition-all duration-300 rounded-lg hover:bg-primary-50 relative group"
               >
                 {link.label}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 group-hover:w-3/4 transition-all duration-300"></span>
               </Link>
             ))}
           </nav>
@@ -70,29 +62,30 @@ export const Header: React.FC = () => {
           {/* Кнопки действий */}
           <div className="hidden lg:flex items-center space-x-3">
             <Button
-              variant={isScrolled ? "ghost" : "ghost"}
+              variant="secondary"
               size="sm"
               href={CONTACT_INFO.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(isScrolled ? "text-gray-800" : "text-white drop-shadow")}
+              className="btn-glow"
             >
               <MessageCircle className="w-4 h-4" />
-              Задать вопрос
+              Telegram
             </Button>
             <Button
-              variant={isScrolled ? "outline" : "outline"}
+              variant="outline"
               size="sm"
               href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}
-              className={cn(isScrolled ? "border-gray-300 text-gray-800" : "border-white text-white drop-shadow")}
+              className="border-gray-300 text-gray-700 hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50"
             >
               <Phone className="w-4 h-4" />
               Позвонить
             </Button>
             <Button
+              variant="premium"
               size="sm"
-              href="#prices"
-              className={cn("shadow-md", isScrolled ? "bg-primary-500 text-white" : "bg-primary-500 text-white")}
+              href="#calculator"
+              className="font-bold"
             >
               Рассчитать стоимость
             </Button>
@@ -105,22 +98,22 @@ export const Header: React.FC = () => {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className={cn("w-6 h-6", isScrolled ? "text-gray-900" : "text-white")} />
+              <X className="w-6 h-6 text-secondary-900 transition-colors" />
             ) : (
-              <Menu className={cn("w-6 h-6", isScrolled ? "text-gray-900" : "text-white")} />
+              <Menu className="w-6 h-6 text-secondary-900 transition-colors" />
             )}
           </button>
         </div>
 
         {/* Мобильное меню */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md">
+          <div className="lg:hidden py-4 border-t border-gray-200 bg-white/98 backdrop-blur-lg">
             <nav className="flex flex-col space-y-4">
               {NAVIGATION_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-primary-500 transition-colors px-4 py-2"
+                  className="text-secondary-700 hover:text-primary-600 transition-colors px-4 py-2 font-medium"
                   onClick={handleLinkClick}
                 >
                   {link.label}
@@ -133,9 +126,9 @@ export const Header: React.FC = () => {
                 </Button>
                 <Button size="sm" className="w-full" href={CONTACT_INFO.telegram} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4" />
-                  Задать вопрос
+                  Telegram
                 </Button>
-                <Button size="sm" className="w-full" href="#prices">
+                <Button size="sm" className="w-full bg-primary-500 text-white hover:bg-primary-600" href="#calculator">
                   Рассчитать стоимость
                 </Button>
               </div>
