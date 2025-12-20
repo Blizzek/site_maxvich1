@@ -79,6 +79,8 @@ class RepairCalculator {
       heating: formData.get("heating") === "on",
       plumbing: formData.get("plumbing") === "on",
       replanning: formData.get("replanning") === "on",
+      ceiling: formData.get("ceiling") === "on",
+      designProject: formData.get("designProject") === "on",
     };
   }
 
@@ -143,6 +145,8 @@ class RepairCalculator {
       { key: "heating", name: "теплыйПол", enabled: data.heating },
       { key: "plumbing", name: "сантехника", enabled: data.plumbing },
       { key: "replanning", name: "перепланировка", enabled: data.replanning },
+      { key: "ceiling", name: "натяжнойПотолок", enabled: data.ceiling },
+      { key: "designProject", name: "дизайнПроект", enabled: data.designProject },
     ];
 
     services.forEach((service) => {
@@ -179,6 +183,8 @@ class RepairCalculator {
       теплыйПол: "Теплый пол",
       сантехника: "Сантехника",
       перепланировка: "Перепланировка",
+      натяжнойПотолок: "Натяжной потолок",
+      дизайнПроект: "Дизайн-проект",
     };
 
     const label = labels[serviceName] || serviceName;

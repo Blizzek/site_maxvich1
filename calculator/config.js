@@ -38,12 +38,20 @@ const CALCULATOR_CONFIG = {
       price: 3500  // руб/м2
     },
     сантехника: {
-      type: 'perSquareMeter',
-      price: 1500  // руб/м2
+      type: 'fixed',
+      price: 80000  // фиксированная стоимость
     },
     перепланировка: {
       type: 'fixed',
       price: 150000  // фиксированная стоимость
+    },
+    натяжнойПотолок: {
+      type: 'perSquareMeter',
+      price: 800  // руб/м2
+    },
+    дизайнПроект: {
+      type: 'fixed',
+      price: 50000  // фиксированная стоимость
     }
   },
 

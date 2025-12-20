@@ -36,6 +36,14 @@ export interface CalculatorConfig {
       type: 'perSquareMeter' | 'fixed';
       price: number;
     };
+    натяжнойПотолок: {
+      type: 'perSquareMeter' | 'fixed';
+      price: number;
+    };
+    дизайнПроект: {
+      type: 'perSquareMeter' | 'fixed';
+      price: number;
+    };
   };
   currency: string;
   version: string;
@@ -68,12 +76,20 @@ const DEFAULT_CONFIG: CalculatorConfig = {
       price: 3500,
     },
     сантехника: {
-      type: 'perSquareMeter',
-      price: 1500,
+      type: 'fixed',
+      price: 80000,
     },
     перепланировка: {
       type: 'fixed',
       price: 150000,
+    },
+    натяжнойПотолок: {
+      type: 'perSquareMeter',
+      price: 800,
+    },
+    дизайнПроект: {
+      type: 'fixed',
+      price: 50000,
     },
   },
   currency: '₽',
