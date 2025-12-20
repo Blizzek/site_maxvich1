@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Светлая тема: roomnn-подобная палитра с фирменным оранжевым */
+    --background: 213 40% 97%;
+    --foreground: 222 26% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 26% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 26% 12%;
+    --primary: 32 100% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 40% 22%;
+    --secondary-foreground: 219 25% 92%;
+    --muted: 215 28% 92%;
+    --muted-foreground: 220 15% 48%;
+    --accent: 220 74% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 86%;
+    --input: 220 20% 86%;
+    --ring: 32 100% 52%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Пользовательские стили */
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  .heading-2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+
+  .heading-3 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500;
+  }
+
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+}
