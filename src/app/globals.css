@@ -15,11 +15,11 @@
     --popover-foreground: 222 47% 11%;
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 217 91% 60%;
+    --secondary: 210 100% 50%;
     --secondary-foreground: 0 0% 100%;
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
-    --accent: 217 91% 60%;
+    --accent: 201 96% 32%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -95,7 +95,7 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-accent-400 to-accent-500;
   }
   
   .gradient-border {
@@ -135,5 +135,16 @@
   
   .animate-pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  /* Адаптивная позиция фонового изображения героя */
+  .hero-bg-adaptive {
+    background-position: 50% 30%;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-bg-adaptive {
+      background-position: 50% 25%;
+    }
   }
 }
