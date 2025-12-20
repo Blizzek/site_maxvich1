@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-transparent backdrop-blur-md shadow-lg"
+          ? "bg-gradient-to-b from-white/90 to-white/85 backdrop-blur-md shadow-[0_8px_32px_rgba(15,23,42,0.12)]"
           : "bg-transparent"
       )}
     >
@@ -39,11 +39,11 @@ export const Header: React.FC = () => {
           {/* Логотип */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="text-2xl font-bold">
-              <span className="text-primary-500">Rem</span>
+              <span className={cn("transition-colors", isScrolled ? "text-primary-500" : "text-primary-400")}>Rem</span>
               <span
                 className={cn(
-                  "transition-colors",
-                  isScrolled ? "text-gray-900" : "text-white"
+                  "transition-colors font-bold",
+                  isScrolled ? "text-secondary-900" : "text-white drop-shadow-lg"
                 )}
               >
                 -Maxvich
@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary-500",
-                  isScrolled ? "text-gray-800" : "text-white drop-shadow"
+                  isScrolled ? "text-secondary-700 hover:text-primary-600" : "text-white drop-shadow-lg hover:text-primary-200"
                 )}
               >
                 {link.label}
@@ -75,7 +75,10 @@ export const Header: React.FC = () => {
               href={CONTACT_INFO.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(isScrolled ? "text-gray-800" : "text-white drop-shadow")}
+              className={cn(
+                "transition-colors",
+                isScrolled ? "text-secondary-700 hover:text-primary-600" : "text-white drop-shadow-lg hover:text-primary-200"
+              )}
             >
               <MessageCircle className="w-4 h-4" />
               Задать вопрос
@@ -84,15 +87,25 @@ export const Header: React.FC = () => {
               variant={isScrolled ? "outline" : "outline"}
               size="sm"
               href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}
-              className={cn(isScrolled ? "border-gray-300 text-gray-800" : "border-white text-white drop-shadow")}
+              className={cn(
+                "transition-colors",
+                isScrolled 
+                  ? "border-secondary-300 text-secondary-700 hover:border-primary-500 hover:text-primary-600" 
+                  : "border-white text-white drop-shadow-lg hover:border-primary-300 hover:text-primary-200"
+              )}
             >
               <Phone className="w-4 h-4" />
               Позвонить
             </Button>
             <Button
               size="sm"
-              href="#prices"
-              className={cn("shadow-md", isScrolled ? "bg-primary-500 text-white" : "bg-primary-500 text-white")}
+              href="#calculator"
+              className={cn(
+                "shadow-md font-semibold transition-all",
+                isScrolled
+                  ? "bg-primary-500 text-white hover:bg-primary-600 hover:shadow-[0_8px_16px_rgba(255,140,0,0.3)]"
+                  : "bg-primary-500 text-white hover:bg-primary-600 hover:shadow-[0_8px_20px_rgba(255,140,0,0.4)]"
+              )}
             >
               Рассчитать стоимость
             </Button>
@@ -105,22 +118,22 @@ export const Header: React.FC = () => {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className={cn("w-6 h-6", isScrolled ? "text-gray-900" : "text-white")} />
+              <X className={cn("w-6 h-6 transition-colors", isScrolled ? "text-secondary-900" : "text-white drop-shadow-lg")} />
             ) : (
-              <Menu className={cn("w-6 h-6", isScrolled ? "text-gray-900" : "text-white")} />
+              <Menu className={cn("w-6 h-6 transition-colors", isScrolled ? "text-secondary-900" : "text-white drop-shadow-lg")} />
             )}
           </button>
         </div>
 
         {/* Мобильное меню */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md">
+          <div className="lg:hidden py-4 border-t border-gray-200 bg-white/98 backdrop-blur-lg">
             <nav className="flex flex-col space-y-4">
               {NAVIGATION_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-primary-500 transition-colors px-4 py-2"
+                  className="text-secondary-700 hover:text-primary-600 transition-colors px-4 py-2 font-medium"
                   onClick={handleLinkClick}
                 >
                   {link.label}
@@ -135,7 +148,7 @@ export const Header: React.FC = () => {
                   <MessageCircle className="w-4 h-4" />
                   Задать вопрос
                 </Button>
-                <Button size="sm" className="w-full" href="#prices">
+                <Button size="sm" className="w-full bg-primary-500 text-white hover:bg-primary-600" href="#calculator">
                   Рассчитать стоимость
                 </Button>
               </div>
