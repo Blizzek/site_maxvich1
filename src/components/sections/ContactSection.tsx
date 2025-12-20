@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { CONTACT_INFO } from "@/data/constants";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Smartphone } from "lucide-react";
+import { MapWidget } from "@/components/ui/MapWidget";
 
 export const ContactSection: React.FC = () => {
   return (
@@ -65,9 +66,9 @@ export const ContactSection: React.FC = () => {
 
             <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-6">
               <p className="text-sm font-semibold text-gray-800">Карта офиса</p>
-              <p className="text-sm text-gray-600 mt-2">Добавим встраиваемую карту Yandex после уточнения адреса.</p>
-              <div className="mt-4 h-40 rounded-xl bg-gradient-to-br from-gray-200 via-white to-gray-200 flex items-center justify-center text-gray-500 text-sm">
-                Карта будет размещена здесь
+              <p className="text-sm text-gray-600 mt-2">Адрес уточним позже — пока показан центр города.</p>
+              <div className="mt-4">
+                <MapWidget query={CONTACT_INFO.address || "Нижний Новгород"} height={220} />
               </div>
             </div>
           </div>
