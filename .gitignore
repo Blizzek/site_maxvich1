@@ -43,3 +43,6 @@ next-env.d.ts
 
 # uploads
 /public/uploads/
+
+*.zip
+site_maxvich1.zip
