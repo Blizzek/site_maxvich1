@@ -63,7 +63,12 @@ export const HeroSection: React.FC = () => {
                 <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 Оставить заявку
               </Button>
-              <Button variant="outline" size="lg" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                href="#calculator"
+              >
                 <Calculator className="w-5 h-5" />
                 Рассчитать стоимость
               </Button>
