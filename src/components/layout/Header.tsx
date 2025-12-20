@@ -28,41 +28,33 @@ export const Header: React.FC = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-gradient-to-b from-white/90 to-white/85 backdrop-blur-md shadow-[0_8px_32px_rgba(15,23,42,0.12)]"
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "bg-secondary-900/50 backdrop-blur-3xl shadow-sm border-b border-white/10",
+        isScrolled && "bg-secondary-900/50 shadow-lg border-b border-white/20"
       )}
     >
       <Container>
         <div className="flex items-center justify-between h-20">
           {/* Логотип */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold">
-              <span className={cn("transition-colors", isScrolled ? "text-primary-500" : "text-primary-400")}>Rem</span>
-              <span
-                className={cn(
-                  "transition-colors font-bold",
-                  isScrolled ? "text-secondary-900" : "text-white drop-shadow-lg"
-                )}
-              >
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="text-2xl font-extrabold">
+              <span className="text-primary-500 transition-all duration-300 group-hover:text-primary-400">Rem</span>
+              <span className="text-white font-extrabold transition-all duration-300 group-hover:text-secondary-100">
                 -Maxvich
               </span>
             </div>
           </Link>
 
           {/* Навигация десктоп */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-1">
             {NAVIGATION_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary-500",
-                  isScrolled ? "text-secondary-700 hover:text-primary-600" : "text-white drop-shadow-lg hover:text-primary-200"
-                )}
+                className="px-4 py-2 text-sm font-semibold text-secondary-100 hover:text-primary-400 transition-all duration-300 rounded-lg hover:bg-white/5 relative group"
               >
                 {link.label}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 group-hover:w-3/4 transition-all duration-300"></span>
               </Link>
             ))}
           </nav>
@@ -70,42 +62,30 @@ export const Header: React.FC = () => {
           {/* Кнопки действий */}
           <div className="hidden lg:flex items-center space-x-3">
             <Button
-              variant={isScrolled ? "ghost" : "ghost"}
+              variant="secondary"
               size="sm"
               href={CONTACT_INFO.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(
-                "transition-colors",
-                isScrolled ? "text-secondary-700 hover:text-primary-600" : "text-white drop-shadow-lg hover:text-primary-200"
-              )}
+              className="btn-glow"
             >
               <MessageCircle className="w-4 h-4" />
-              Задать вопрос
+              Telegram
             </Button>
             <Button
-              variant={isScrolled ? "outline" : "outline"}
+              variant="outline"
               size="sm"
               href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}
-              className={cn(
-                "transition-colors",
-                isScrolled 
-                  ? "border-secondary-300 text-secondary-700 hover:border-primary-500 hover:text-primary-600" 
-                  : "border-white text-white drop-shadow-lg hover:border-primary-300 hover:text-primary-200"
-              )}
+              className="border-secondary-600 text-secondary-100 hover:border-primary-500 hover:text-primary-400 hover:bg-white/5"
             >
               <Phone className="w-4 h-4" />
               Позвонить
             </Button>
             <Button
+              variant="premium"
               size="sm"
               href="#calculator"
-              className={cn(
-                "shadow-md font-semibold transition-all",
-                isScrolled
-                  ? "bg-primary-500 text-white hover:bg-primary-600 hover:shadow-[0_8px_16px_rgba(255,140,0,0.3)]"
-                  : "bg-primary-500 text-white hover:bg-primary-600 hover:shadow-[0_8px_20px_rgba(255,140,0,0.4)]"
-              )}
+              className="font-bold"
             >
               Рассчитать стоимость
             </Button>
@@ -118,35 +98,35 @@ export const Header: React.FC = () => {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className={cn("w-6 h-6 transition-colors", isScrolled ? "text-secondary-900" : "text-white drop-shadow-lg")} />
+              <X className="w-6 h-6 text-white transition-colors" />
             ) : (
-              <Menu className={cn("w-6 h-6 transition-colors", isScrolled ? "text-secondary-900" : "text-white drop-shadow-lg")} />
+              <Menu className="w-6 h-6 text-white transition-colors" />
             )}
           </button>
         </div>
 
         {/* Мобильное меню */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 bg-white/98 backdrop-blur-lg">
+          <div className="lg:hidden py-4 border-t border-secondary-800 bg-secondary-900/95 backdrop-blur-lg">
             <nav className="flex flex-col space-y-4">
               {NAVIGATION_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-secondary-700 hover:text-primary-600 transition-colors px-4 py-2 font-medium"
+                  className="text-secondary-100 hover:text-primary-400 transition-colors px-4 py-2 font-medium"
                   onClick={handleLinkClick}
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-2 px-4 pt-4 border-t border-gray-200">
-                <Button variant="outline" size="sm" className="w-full" href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}>
+              <div className="flex flex-col space-y-2 px-4 pt-4 border-t border-secondary-800">
+                <Button variant="outline" size="sm" className="w-full border-secondary-600 text-secondary-100" href={CONTACT_INFO.phone ? `tel:${CONTACT_INFO.phone}` : "#contacts"}>
                   <Phone className="w-4 h-4" />
                   Позвонить
                 </Button>
                 <Button size="sm" className="w-full" href={CONTACT_INFO.telegram} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4" />
-                  Задать вопрос
+                  Telegram
                 </Button>
                 <Button size="sm" className="w-full bg-primary-500 text-white hover:bg-primary-600" href="#calculator">
                   Рассчитать стоимость

@@ -37,25 +37,28 @@ export const ServicesSection: React.FC = () => {
   const current = SERVICE_CATEGORIES.find((c) => c.id === activeTab) ?? SERVICE_CATEGORIES[0];
 
   return (
-    <Section id="services" className="bg-white">
+    <Section id="services" className="bg-gradient-to-b from-white to-gray-50">
       <Container>
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-8">
-          <div>
-            <p className="text-sm font-semibold text-primary-500">Наши услуги</p>
-            <h2 className="heading-2 mb-3">Ремонт под ключ и отдельные работы</h2>
-            <p className="text-gray-600 max-w-2xl">
-              Быстрый старт: выберите тип ремонта, узнайте базовые цены и оставьте заявку. Работаем по договору, даем гарантию 36 месяцев.
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-12">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full border border-primary-100">
+              <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-semibold text-primary-600">Наши услуги</span>
+            </div>
+            <h2 className="heading-2">Ремонт под ключ и отдельные работы</h2>
+            <p className="text-lg text-gray-600 max-w-2xl">
+              Выберите тип ремонта, узнайте базовые цены. Работаем по договору с гарантией 36 месяцев.
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {SERVICE_CATEGORIES.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                className={`rounded-xl border-2 px-5 py-2.5 text-sm font-bold transition-all duration-300 ${
                   activeTab === tab.id
-                    ? "border-primary-500 bg-primary-50 text-primary-600 shadow-sm"
-                    : "border-gray-200 text-gray-600 hover:border-primary-200 hover:text-primary-600"
+                    ? "border-primary-500 bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/30 scale-105"
+                    : "border-gray-200 text-gray-600 hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50"
                 }`}
               >
                 {tab.label}
@@ -65,19 +68,25 @@ export const ServicesSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {current.services.map((service) => {
+          {current.services.map((service, index) => {
             const Icon = iconMap[service.icon as keyof typeof iconMap] ?? Home;
             return (
-              <Card key={service.id} hover className="h-full flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary-50 text-primary-500 flex items-center justify-center">
-                    <Icon className="w-6 h-6" />
+              <Card 
+                key={service.id} 
+                hover 
+                variant="premium"
+                className="h-full flex flex-col group"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-50 to-orange-50 text-primary-500 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm">
+                    <Icon className="w-7 h-7" />
                   </div>
-                  <span className="text-sm font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                  <span className="text-sm font-bold text-white bg-gradient-to-r from-primary-500 to-orange-500 px-4 py-2 rounded-xl shadow-md">
                     {service.price}
                   </span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">{service.title}</h3>
                 <p className="text-sm text-gray-600 mb-4 flex-1">{service.description}</p>
                 <div className="space-y-2 mb-4">
                   {service.features.slice(0, 4).map((feature) => (
@@ -100,7 +109,7 @@ export const ServicesSection: React.FC = () => {
           })}
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+        <div className="mt-10">
           <Card className="bg-gradient-to-r from-primary-500 to-accent-500 text-white">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
@@ -129,19 +138,6 @@ export const ServicesSection: React.FC = () => {
                 </Button>
               </div>
             </div>
-          </Card>
-
-          <Card className="h-full flex flex-col justify-between">
-            <div>
-              <p className="text-sm font-semibold text-primary-500">Калькулятор стоимости</p>
-              <h3 className="text-xl font-bold text-gray-900 mt-2">Разработчик 2 подключает расчёт</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Мы уже подготовили раздел. Калькулятор стоимости реализует Разработчик 2 — после этого клиенты смогут считать цену онлайн.
-              </p>
-            </div>
-            <Button className="mt-6" href="#calculator">
-              Получить расчёт
-            </Button>
           </Card>
         </div>
       </Container>
