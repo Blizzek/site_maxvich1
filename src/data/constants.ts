@@ -27,7 +27,7 @@ export const CONTACT_INFO = {
   workingHours: "Пн-Вс: 8:00 - 20:00",
   telegram: "https://t.me/@Maximovich96", // TODO: Заменить
   whatsapp: "https://wa.me/7XXXXXXXXXX", // TODO: Заменить
-  vk: "https://vk.com/username", // TODO: Заменить
+  vk: "https://vk.ru/id503396633",
 } as const;
 
 export const ADVANTAGES = [

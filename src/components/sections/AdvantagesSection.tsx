@@ -68,7 +68,7 @@ export const AdvantagesSection: React.FC = () => {
         {/* Статистика */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-10 bg-white rounded-3xl shadow-xl border border-gray-100">
           {[
-            { value: "500+", label: "Выполненных объектов", color: "from-primary-500 to-orange-500" },
+            { value: "120+", label: "Выполненных объектов", color: "from-primary-500 to-orange-500" },
             { value: "98%", label: "Довольных клиентов", color: "from-green-500 to-emerald-500" },
             { value: "24/7", label: "Поддержка клиентов", color: "from-secondary-500 to-blue-500" },
           ].map((stat, index) => (
