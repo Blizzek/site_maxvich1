@@ -2,23 +2,24 @@
 
 import { useEffect, useState } from "react";
 
-interface ProjectWithVideos {
+interface Video {
   id: string;
   title: string;
-  videos?: string[];
+  description?: string;
+  videoUrl: string;
+  thumbnailUrl?: string;
 }
 
 export function VideoSection() {
-  const [items, setItems] = useState<ProjectWithVideos[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch('/api/projects');
+        const res = await fetch('/api/videos');
         if (res.ok) {
           const data = await res.json();
-          const filtered = data.filter((p: any) => p.videos && p.videos.length > 0);
-          setItems(filtered);
+          setVideos(data);
         }
       } catch (err) {
         console.error('Error loading videos:', err);
@@ -27,7 +28,7 @@ export function VideoSection() {
     load();
   }, []);
 
-  if (!items || items.length === 0) return null;
+  if (!videos || videos.length === 0) return null;
 
   return (
     <section id="videos" className="section-padding bg-white">
@@ -38,14 +39,17 @@ export function VideoSection() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((p) => (
-            <div key={p.id} className="rounded-lg overflow-hidden shadow">
+          {videos.map((video) => (
+            <div key={video.id} className="rounded-lg overflow-hidden shadow-lg bg-white">
               <video controls className="w-full h-56 object-cover bg-black">
-                <source src={p.videos![0]} />
+                <source src={video.videoUrl} />
                 Ваш браузер не поддерживает видео.
               </video>
               <div className="p-4">
-                <h3 className="font-semibold">{p.title}</h3>
+                <h3 className="font-semibold text-lg">{video.title}</h3>
+                {video.description && (
+                  <p className="text-sm text-gray-600 mt-2">{video.description}</p>
+                )}
               </div>
             </div>
           ))}
