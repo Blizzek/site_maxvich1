@@ -36,7 +36,9 @@ export const ServicesSection: React.FC = () => {
 
   const categories = [
     { id: 'all', label: 'Все услуги' },
-    ...Array.from(new Set(services.map(s => s.category || 'other'))).map(c => ({ id: c, label: c === 'all' ? 'Все услуги' : c }))
+    { id: 'complex', label: 'Комплексный ремонт' },
+    { id: 'rooms', label: 'Ремонт помещений' },
+    { id: 'works', label: 'Отдельные работы' },
   ];
 
   const current = activeCategory === 'all' ? services : services.filter(s => (s.category || 'other') === activeCategory);
@@ -123,8 +125,8 @@ export const ServicesSection: React.FC = () => {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  variant="secondary"
-                  className="bg-white text-primary-600 hover:bg-white/90 font-bold"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/10 font-bold"
                   size="lg"
                   href="#contacts"
                 >

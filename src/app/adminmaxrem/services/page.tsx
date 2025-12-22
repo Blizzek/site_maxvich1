@@ -14,6 +14,7 @@ interface Service {
   description?: string;
   price?: string;
   imageUrl?: string;
+  category?: string;
 }
 
 export default function ServicesAdmin() {
@@ -23,7 +24,7 @@ export default function ServicesAdmin() {
   const [items, setItems] = useState<Service[]>([]);
   const [isModal, setIsModal] = useState(false);
   const [editing, setEditing] = useState<Service | null>(null);
-  const [form, setForm] = useState({ title: '', description: '', price: '', imageUrl: '' });
+  const [form, setForm] = useState({ title: '', description: '', price: '', imageUrl: '', category: 'all' });
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -65,14 +66,14 @@ export default function ServicesAdmin() {
     try {
       const url = editing ? `/api/services/${editing.id}` : '/api/services';
       const method = editing ? 'PATCH' : 'POST';
-      const body = editing ? { ...form } : { ...form };
+      const body = { ...form };
       const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       if (res.ok) { setIsModal(false); load(); }
       else alert('Ошибка сохранения');
     } catch (e) { console.error(e); alert('Ошибка'); }
   };
 
-  const edit = (it: Service) => { setEditing(it); setForm({ title: it.title, description: it.description || '', price: it.price || '', imageUrl: it.imageUrl || '' }); setIsModal(true); };
+  const edit = (it: Service) => { setEditing(it); setForm({ title: it.title, description: it.description || '', price: it.price || '', imageUrl: it.imageUrl || '', category: it.category || 'all' }); setIsModal(true); };
 
   const remove = async (id: string) => {
     if (!confirm('Удалить услугу?')) return;
@@ -136,6 +137,19 @@ export default function ServicesAdmin() {
               <div>
                 <label className="block text-sm font-medium">Цена</label>
                 <Input value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Категория</label>
+                <select
+                  value={form.category}
+                  onChange={(e) => setForm({ ...form, category: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">Все услуги</option>
+                  <option value="complex">Комплексный ремонт</option>
+                  <option value="rooms">Ремонт помещений</option>
+                  <option value="works">Отдельные работы</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium">Фото (опционально)</label>
