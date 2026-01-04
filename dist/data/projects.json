@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Пиздоха",
+    "description": "Козёл выебан ",
+    "category": "Ремонт офиса",
+    "area": 8,
+    "duration": "54",
+    "price": 123123123123,
+    "imageBefore": "/uploads/projects/1766240362502-1014x892_1_e73d525c32cec1fe535de0731aec3d811014x892_0xFIIcyqOG_5715892750036286304.png",
+    "imageAfter": "/uploads/projects/1766240365762-image.png",
+    "id": "1766240367177",
+    "createdAt": "2025-12-20T14:19:27.177Z",
+    "updatedAt": "2025-12-20T14:19:27.177Z"
+  },
+  {
+    "title": "Ремонт Трешку залупёшки ",
+    "description": "Я ебал козла ",
+    "category": "Ремонт квартиры",
+    "area": 666,
+    "duration": "4",
+    "price": 1000000000000,
+    "imageBefore": "/uploads/projects/1766240005917-image.png",
+    "imageAfter": "/uploads/projects/1766240009139-1014x892_1_e73d525c32cec1fe535de0731aec3d811014x892_0xFIIcyqOG_5715892750036286304.png",
+    "id": "1766240010916",
+    "createdAt": "2025-12-20T14:13:30.916Z",
+    "updatedAt": "2025-12-20T14:18:10.155Z"
+  }
+]
