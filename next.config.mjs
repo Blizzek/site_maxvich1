@@ -8,6 +8,19 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    domains: ['localhost', 'api.qrserver.com'],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/uploads/projects/:filename',
+        destination: '/api/files/projects/:filename',
+      },
+      {
+        source: '/uploads/videos/:filename',
+        destination: '/api/files/videos/:filename',
+      },
+    ];
   },
 };
 

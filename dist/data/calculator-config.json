@@ -1,0 +1,46 @@
+{
+  "basePrice": {
+    "косметический": 5000,
+    "дизайнерский": 12000,
+    "капитальный": 20000
+  },
+  "objectType": {
+    "квартира": 1,
+    "офис": 1.2,
+    "дом": 1.3
+  },
+  "buildingType": {
+    "новостройка": 1,
+    "вторичка": 1.15
+  },
+  "bathroomPrice": 80000,
+  "additionalServices": {
+    "электрика": {
+      "type": "perSquareMeter",
+      "price": 2000
+    },
+    "теплыйПол": {
+      "type": "perSquareMeter",
+      "price": 3500
+    },
+    "сантехника": {
+      "type": "perSquareMeter",
+      "price": 1500
+    },
+    "перепланировка": {
+      "type": "fixed",
+      "price": 150000
+    },
+    "натяжнойПотолок": {
+      "type": "perSquareMeter",
+      "price": 800
+    },
+    "дизайнПроект": {
+      "type": "fixed",
+      "price": 50000
+    }
+  },
+  "currency": "₽",
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-20T14:48:01.779Z"
+}
