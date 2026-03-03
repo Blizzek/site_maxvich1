@@ -10,8 +10,8 @@ export async function GET(
   try {
     const { type, filename } = params;
 
-    // Валидация типа (только videos или projects)
-    if (!['videos', 'projects'].includes(type)) {
+    // Валидация типа (только videos, projects или services)
+    if (!['videos', 'projects', 'services'].includes(type)) {
       return NextResponse.json(
         { error: 'Неверный тип файла' },
         { status: 400 }

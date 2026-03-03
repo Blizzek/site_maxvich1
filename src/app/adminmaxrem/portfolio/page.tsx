@@ -260,28 +260,32 @@ export default function PortfolioManagementPage() {
             {projects.map((project) => (
               <Card key={project.id} className="overflow-hidden">
                 <div className="grid grid-cols-2 gap-2 p-2">
-                  <div className="relative h-40">
-                    <Image
-                      src={project.imageBefore}
-                      alt="До"
-                      fill
-                      className="object-cover rounded"
-                    />
-                    <span className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                      До
-                    </span>
-                  </div>
-                  <div className="relative h-40">
-                    <Image
-                      src={project.imageAfter}
-                      alt="После"
-                      fill
-                      className="object-cover rounded"
-                    />
-                    <span className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                      После
-                    </span>
-                  </div>
+                  {project.imageBefore && (
+                    <div className="relative h-40">
+                      <Image
+                        src={project.imageBefore as string}
+                        alt="До"
+                        fill
+                        className="object-cover rounded"
+                      />
+                      <span className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                        До
+                      </span>
+                    </div>
+                  )}
+                  {project.imageAfter && (
+                    <div className="relative h-40">
+                      <Image
+                        src={project.imageAfter as string}
+                        alt="После"
+                        fill
+                        className="object-cover rounded"
+                      />
+                      <span className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                        После
+                      </span>
+                    </div>
+                  )}
                 </div>
                 {project.videos && project.videos.length > 0 && (
                   <div className="p-2">
@@ -434,7 +438,7 @@ export default function PortfolioManagementPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Фото "До" (опционально)
+                      Фото «До» (опционально)
                     </label>
                     <input
                       type="file"
@@ -460,7 +464,7 @@ export default function PortfolioManagementPage() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Фото "После" (опционально)
+                      Фото «После» (опционально)
                     </label>
                     <input
                       type="file"

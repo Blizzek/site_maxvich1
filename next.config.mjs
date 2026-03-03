@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   images: {
     remotePatterns: [
       {
@@ -12,6 +11,10 @@ const nextConfig = {
   },
   async rewrites() {
     return [
+      {
+        source: '/uploads/services/:filename',
+        destination: '/api/files/services/:filename',
+      },
       {
         source: '/uploads/projects/:filename',
         destination: '/api/files/projects/:filename',

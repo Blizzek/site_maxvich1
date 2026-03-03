@@ -26,8 +26,12 @@ export async function POST(request: NextRequest) {
     }
 
     // В standalone режиме используем data/uploads для постоянного хранилища
+    // Поддерживаем типы: 'projects' (по умолчанию), 'services', 'videos'
+    const requestedType = (formData.get('type') as string) || '';
     const uploadDir = isVideo
       ? path.join(process.cwd(), 'data', 'uploads', 'videos')
+      : requestedType === 'services'
+      ? path.join(process.cwd(), 'data', 'uploads', 'services')
       : path.join(process.cwd(), 'data', 'uploads', 'projects');
     if (!existsSync(uploadDir)) {
       await mkdir(uploadDir, { recursive: true });
@@ -48,6 +52,8 @@ export async function POST(request: NextRequest) {
     // Возвращаем путь к файлу для доступа через API
     const publicPath = isVideo
       ? `/api/files/videos/${fileName}`
+      : requestedType === 'services'
+      ? `/api/files/services/${fileName}`
       : `/api/files/projects/${fileName}`;
 
     return NextResponse.json({ 
